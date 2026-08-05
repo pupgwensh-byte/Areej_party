@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#6f1737">
+  <meta name="description" content="رسالة عيد ميلاد لأريچ - أروچه - فراولة.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="كل سنة وانتي طيبة يا أروچه 🍓">
+  <meta property="og:description" content="حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد.">
+  <meta property="og:image" content="assets/preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>أروچه | كل سنة وانتي طيبة 🍓</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Marhey:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --wine:#6f1737;
+      --wine-dark:#431021;
+      --rose:#e6537c;
+      --rose-soft:#fff0f4;
+      --cream:#fffaf8;
+      --paper:#ffffff;
+      --text:#31131f;
+      --muted:#785a66;
+      --line:rgba(111,23,55,.12);
+      --shadow:0 18px 50px rgba(91,18,45,.12);
+      --shadow-soft:0 10px 26px rgba(91,18,45,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      font-family:"Cairo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 8%,rgba(230,83,124,.12),transparent 28rem),
+        radial-gradient(circle at 92% 24%,rgba(255,201,216,.3),transparent 25rem),
+        linear-gradient(180deg,#fffaf8 0%,#fff4f7 48%,#fffaf8 100%);
+    }
+
+    body.locked{overflow:hidden}
+    button,a,input{font:inherit}
+    button{border:0;cursor:pointer}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .hidden{display:none!important}
+    .container{width:min(1120px,92%);margin-inline:auto}
+
+    .password-gate,
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:grid;
+      place-items:center;
+      padding:22px;
+      color:#fff;
+      background:linear-gradient(145deg,var(--wine-dark),var(--wine));
+    }
+    .password-gate.unlocked,
+    .intro.hide{display:none}
+
+    .gate-card,
+    .intro-card{
+      width:min(580px,100%);
+      padding:clamp(28px,7vw,52px);
+      text-align:center;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:32px;
+      background:rgba(255,255,255,.08);
+      box-shadow:0 30px 80px rgba(0,0,0,.25);
+    }
+
+    .gate-icon,
+    .intro-icon{
+      width:82px;
+      height:82px;
+      margin:0 auto 16px;
+      display:grid;
+      place-items:center;
+      border-radius:24px;
+      background:rgba(255,255,255,.11);
+      font-size:38px;
+    }
+
+    .gate-card h1,
+    .intro-card h1{
+      margin:0 0 12px;
+      font-family:"Marhey",cursive;
+      font-size:clamp(32px,7vw,54px);
+      line-height:1.45;
+    }
+
+    .gate-card p,
+    .intro-card p{
+      margin:0 auto;
+      max-width:470px;
+      color:rgba(255,255,255,.8);
+      line-height:1.95;
+      font-size:17px;
+    }
+
+    .password-form{margin-top:22px;display:grid;gap:10px}
+    .password-row{
+      display:flex;
+      gap:8px;
+      padding:8px;
+      border-radius:17px;
+      background:#fff;
+      box-shadow:0 14px 32px rgba(0,0,0,.2);
+    }
+    .password-input{
+      flex:1;
+      min-width:0;
+      border:0;
+      outline:0;
+      padding:12px;
+      background:transparent;
+      color:var(--wine);
+      text-align:center;
+      font-size:21px;
+      font-weight:900;
+      letter-spacing:2px;
+    }
+    .unlock-btn,
+    .start-btn{
+      padding:14px 19px;
+      border-radius:13px;
+      background:#fff;
+      color:var(--wine);
+      font-weight:900;
+    }
+    .unlock-btn{background:var(--wine);color:#fff}
+    .password-hint{font-size:12px;color:rgba(255,255,255,.6)}
+    .password-error{min-height:24px;color:#ffd3df;font-size:14px;font-weight:800}
+    .intro-label{
+      display:inline-flex;
+      padding:8px 13px;
+      margin-bottom:14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.1);
+      font-size:14px;
+      font-weight:800;
+    }
+    .start-btn{margin-top:22px;min-width:210px}
+    .intro-note{display:block;margin-top:12px;color:rgba(255,255,255,.58);font-size:12px}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:40;
+      padding:12px 0;
+      background:rgba(255,250,248,.9);
+      border-bottom:1px solid rgba(111,23,55,.07);
+      backdrop-filter:blur(14px);
+    }
+    .nav-wrap{
+      width:min(1120px,92%);
+      margin-inline:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;color:var(--wine);font-weight:900}
+    .brand-mark{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--wine);color:#fff}
+    .nav-links{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+    .nav-links a{padding:8px 11px;border-radius:11px;color:var(--muted);font-size:14px;font-weight:800}
+    .nav-play{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:var(--wine);color:#fff}
+
+    .hero{padding:78px 0 74px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.8);
+      color:var(--wine);
+      font-weight:900;
+      box-shadow:var(--shadow-soft);
+    }
+    .pill-dot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+    .hero h2{
+      margin:18px 0 14px;
+      font-family:"Marhey",cursive;
+      font-size:clamp(44px,8vw,88px);
+      line-height:1.22;
+      color:var(--wine);
+    }
+    .hero h2 span{color:var(--rose)}
+    .hero-lead{margin:0;max-width:700px;color:var(--muted);font-size:clamp(18px,2vw,22px);line-height:2}
+    .personal-line{
+      margin-top:18px;
+      padding:14px 16px;
+      border-right:4px solid var(--rose);
+      border-radius:14px;
+      background:rgba(255,255,255,.72);
+      color:var(--wine);
+      font-weight:800;
+      line-height:1.85;
+      box-shadow:var(--shadow-soft);
+    }
+    .cta-row{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 21px;border-radius:15px;font-weight:900}
+    .btn-primary{background:var(--wine);color:#fff;box-shadow:0 14px 30px rgba(111,23,55,.2)}
+    .btn-soft{background:#fff;color:var(--wine);border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .mini-note{display:flex;gap:10px;align-items:flex-start;margin-top:18px;max-width:650px;color:var(--muted);font-size:14px;line-height:1.9}
+    .mini-note span{flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:var(--rose-soft)}
+
+    .main-card{
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(255,255,255,.96);
+      box-shadow:var(--shadow);
+    }
+    .stamp{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--rose-soft);color:var(--wine);font-size:13px;font-weight:900}
+    .main-card h3{margin:16px 0 8px;font-family:"Marhey",cursive;font-size:42px;line-height:1.4;color:var(--wine)}
+    .main-card>p{margin:0;color:var(--muted);line-height:1.95}
+    .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+    .stat{padding:14px;border-radius:17px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .stat strong{display:block;color:var(--wine);font-size:19px}
+    .stat span{display:block;margin-top:4px;color:var(--muted);font-size:13px;line-height:1.65}
+
+    section{padding:24px 0 92px}
+    .section-head{margin-bottom:26px}
+    .label{display:inline-flex;padding:8px 13px;border-radius:999px;background:var(--rose-soft);color:var(--wine);font-size:13px;font-weight:900}
+    .section-head h3{margin:14px 0 8px;font-family:"Marhey",cursive;font-size:clamp(34px,6vw,56px);line-height:1.4;color:var(--wine)}
+    .section-head p{margin:0;max-width:800px;color:var(--muted);font-size:17px;line-height:1.95}
+
+    .info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .info-card{padding:23px;border-radius:22px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow-soft)}
+    .info-card .num{font-size:25px;color:var(--wine);font-weight:900}
+    .info-card h4{margin:10px 0 7px;color:var(--wine);font-size:20px}
+    .info-card p{margin:0;color:var(--muted);line-height:1.9}
+
+    .timeline{display:grid;gap:14px;border-right:2px solid rgba(111,23,55,.12);padding-right:24px}
+    .timeline-item{position:relative;padding:21px 23px;border-radius:21px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow-soft)}
+    .timeline-item::before{content:"";position:absolute;right:-33px;top:25px;width:14px;height:14px;border-radius:50%;background:var(--rose);border:4px solid #fff4f7}
+    .timeline-item small{color:var(--rose);font-weight:900}
+    .timeline-item h4{margin:6px 0 7px;color:var(--wine);font-size:21px}
+    .timeline-item p{margin:0;color:var(--muted);line-height:1.92}
+
+    .countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+    .count-card{text-align:center;padding:21px;border-radius:21px;background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow-soft)}
+    .count-card strong{display:block;color:var(--wine);font-size:34px}
+    .count-card span{display:block;margin-top:5px;color:var(--muted)}
+    .birthday-msg{margin-top:14px;color:var(--muted);line-height:1.85}
+
+    .letter-box{padding:clamp(26px,5vw,50px);border-radius:30px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .letter-box p{margin:0 0 17px;font-size:clamp(17px,1.8vw,20px);line-height:2.1}
+    .letter-box .quote{margin-bottom:24px;text-align:center;font-family:"Marhey",cursive;font-size:clamp(28px,5vw,50px);line-height:1.55;color:var(--rose)}
+    .sign{font-family:"Marhey",cursive;color:var(--wine);font-size:26px}
+
+    .gallery-shell{padding:25px;border-radius:28px;background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow)}
+    .upload-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+    .upload-title{display:block;color:var(--wine);font-size:21px}
+    .upload-note{margin-top:5px;color:var(--muted);font-size:14px;line-height:1.85}
+    .upload-actions{display:flex;gap:9px;flex-wrap:wrap}
+    .upload-label,.ghost-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 17px;border-radius:14px;font-weight:900}
+    .upload-label{background:var(--wine);color:#fff;cursor:pointer}
+    .ghost-btn{background:#fff;color:var(--wine);border:1px solid var(--line)}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+    .placeholder,.photo-card{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#fff7f9,#ffeaf0);border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .placeholder{display:grid;place-items:center;text-align:center;padding:16px}
+    .placeholder .ph-icon{font-size:38px;margin-bottom:8px}
+    .placeholder strong{display:block;color:var(--wine);font-size:17px}
+    .placeholder span{display:block;margin-top:4px;color:var(--muted);font-size:13px;line-height:1.7}
+    .photo-card img{width:100%;height:100%;object-fit:cover}
+    .photo-card .tag{position:absolute;right:9px;top:9px;padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.88);color:var(--wine);font-size:12px;font-weight:900}
+    .photo-card .remove{position:absolute;left:9px;top:9px;width:33px;height:33px;border-radius:50%;display:grid;place-items:center;background:rgba(111,23,55,.86);color:#fff}
+
+    .player{display:grid;grid-template-columns:240px 1fr;gap:26px;align-items:center;padding:28px;border-radius:30px;background:linear-gradient(135deg,var(--wine-dark),var(--wine));color:#fff;box-shadow:0 28px 65px rgba(91,18,45,.25)}
+    .disc-wrap{min-height:230px;display:grid;place-items:center}
+    .disc{width:210px;height:210px;border-radius:50%;position:relative;background:repeating-radial-gradient(circle at center,#181015 0 4px,#291923 5px 8px);box-shadow:0 22px 45px rgba(0,0,0,.3)}
+    .disc::before{content:"";position:absolute;inset:56px;border-radius:50%;background:linear-gradient(135deg,#f486a4,var(--rose))}
+    .disc::after{content:"🍓";position:absolute;inset:0;display:grid;place-items:center;font-size:36px}
+    .player-badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);color:#ffc9d8;font-size:13px;font-weight:900}
+    .player h4{margin:15px 0 6px;font-family:"Marhey",cursive;font-size:clamp(30px,5vw,50px);line-height:1.45}
+    .player p{margin:0;color:rgba(255,255,255,.78);line-height:1.9}
+    .controls{display:flex;align-items:center;gap:13px;margin-top:21px}
+    .play-btn{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--wine);font-size:21px}
+    .timeline-audio{flex:1;min-width:0}
+    .seek{appearance:none;-webkit-appearance:none;width:100%;height:6px;border-radius:999px;background:linear-gradient(to left,#ff9fb8 var(--seek,0%),rgba(255,255,255,.18) var(--seek,0%));outline:none;cursor:pointer}
+    .seek::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff}
+    .seek::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:#fff}
+    .time{display:flex;justify-content:space-between;margin-top:6px;color:rgba(255,255,255,.6);font-size:12px;font-variant-numeric:tabular-nums}
+    .audio-msg{margin-top:11px;color:#ffd2df;font-size:13px}
+
+    .secret-box{padding:clamp(26px,5vw,48px);border-radius:30px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .secret-intro{max-width:760px;color:var(--muted);font-size:17px;line-height:1.95}
+    .secret-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+    .secret-btn{min-height:105px;padding:16px;border-radius:18px;background:var(--rose-soft);color:var(--wine);border:1px solid var(--line);font-size:28px;font-weight:900}
+    .secret-btn.found{background:#fff;color:var(--muted)}
+    .secret-btn small{display:block;margin-top:5px;font-size:12px;color:var(--muted)}
+    .hunt-status{margin-top:14px;color:var(--wine);font-weight:900}
+    .secret-reveal{display:none;margin-top:20px;padding:20px;border-radius:18px;background:var(--rose-soft);border:1px solid var(--line)}
+    .secret-reveal.show{display:block}
+    .secret-reveal strong{display:block;margin-bottom:7px;color:var(--wine);font-size:24px}
+    .secret-reveal p{margin:0;color:var(--muted);font-size:18px;line-height:1.95}
+    .secret-copy{margin-top:14px;padding:12px 16px;border-radius:13px;background:var(--wine);color:#fff;font-weight:900}
+
+    .ending-box{padding:clamp(30px,6vw,68px);text-align:center;border-radius:34px;background:linear-gradient(135deg,var(--wine-dark),var(--wine));color:#fff;box-shadow:0 30px 70px rgba(91,18,45,.25)}
+    .ending-box h3{margin:15px 0 9px;font-family:"Marhey",cursive;font-size:clamp(34px,6vw,58px);line-height:1.45}
+    .ending-box p{margin:0 auto;max-width:800px;color:rgba(255,255,255,.8);font-size:17px;line-height:2}
+    .response-row{display:flex;justify-content:center;gap:11px;flex-wrap:wrap;margin-top:24px}
+    .response-btn{padding:13px 18px;border-radius:14px;font-weight:900}
+    .response-btn.primary{background:#fff;color:var(--wine)}
+    .response-btn.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15)}
+    .response-msg{display:none;margin:18px auto 0;max-width:700px;padding:15px 17px;border-radius:15px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.9);line-height:1.9}
+    .response-msg.show{display:block}
+    .whatsapp-reply{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;padding:13px 18px;border-radius:14px;background:#25D366;color:#fff;font-weight:900}
+
+    .float-music{position:fixed;left:17px;bottom:17px;z-index:38;width:56px;height:56px;border-radius:17px;display:grid;place-items:center;background:var(--wine);color:#fff;box-shadow:0 14px 30px rgba(91,18,45,.25)}
+    footer{text-align:center;padding:0 20px 42px;color:var(--muted);font-size:14px}
+    footer strong{color:var(--wine)}
+
+    @media (max-width:940px){
+      .hero-grid,.player{grid-template-columns:1fr}
+      .info-grid{grid-template-columns:1fr}
+      .gallery-grid,.countdown,.secret-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .nav-links{display:none}
+    }
+    @media (max-width:620px){
+      .hero{padding-top:54px}
+      .stats,.gallery-grid,.countdown,.secret-grid{grid-template-columns:1fr}
+      .password-row{display:grid}
+      .unlock-btn{width:100%}
+      .player{padding:23px}
+      .disc-wrap{min-height:205px}
+      .disc{width:185px;height:185px}
+      .disc::before{inset:50px}
+    }
+  </style>
+</head>
+<body class="locked">
+  <div class="password-gate" id="passwordGate" aria-modal="true" role="dialog" aria-labelledby="passwordTitle">
+    <div class="gate-card">
+      <div class="gate-icon">🔐</div>
+      <h1 id="passwordTitle">المفاجأة دي لـ أروچه بس</h1>
+      <p>الباب ده مش هيفتح غير بتاريخ مهم عندك جدًا.</p>
+      <form class="password-form" id="passwordForm">
+        <div class="password-row">
+          <input class="password-input" id="passwordInput" inputmode="text" autocomplete="off" placeholder="30/8" aria-label="الباسورد">
+          <button class="unlock-btn" type="submit">افتحي</button>
+        </div>
+        <div class="password-hint">التلميح: يوم وشهر عيد ميلادك</div>
+        <div class="password-error" id="passwordError" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="intro" id="intro">
+    <div class="intro-card">
+      <span class="intro-label">لـ أروچه وبس 🍓</span>
+      <div class="intro-icon">🎂</div>
+      <h1>كل سنة وانتي طيبة يا أروچه</h1>
+      <p>
+        حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد يقولك كل سنة وانتي طيبة،
+        وأسيبلك حاجة تفتحيها وقت ما تحبي.
+      </p>
+      <button class="start-btn" id="startExperience">افتحي</button>
+      <span class="intro-note">في آخر الصفحة كلام مهم مستخبي ليكي.</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-wrap">
+      <a href="#top" class="brand"><span class="brand-mark">🍓</span><span>أروچه</span></a>
+      <div class="nav-links">
+        <a href="#story">الحكاية</a>
+        <a href="#letter">رسالتي</a>
+        <a href="#gallery">صورك</a>
+        <a href="#music">الأغنية</a>
+        <a href="#secret">الرسالة السرية</a>
+      </div>
+      <button class="nav-play" id="navPlay" aria-label="تشغيل الأغنية">▶</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill"><i class="pill-dot"></i> 30 / 8 / 2026</span>
+          <h2>كل سنة وانتي طيبة يا <span>أروچه</span><br>يا أحلى <span>فراولة</span> 🍓</h2>
+          <p class="hero-lead">
+            يمكن إحنا اتخانقنا كتير، ويمكن حصل بينا زعل أكتر من مرة،
+            بس مهما حصل عمرك ما بقيتي شخص عادي بالنسبالي.
+            عشان كده حبيت أسبق اليوم نفسه وأكون أول واحد يحتفل بيكي.
+          </p>
+          <div class="personal-line">من يوم 5/3/2026 وإنتي بقيتي حد فارق معايا أكتر ما كنت بعرف أوضح.</div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#letter">اقري رسالتي</a>
+            <a class="btn btn-soft" href="#gallery">حطي صورك</a>
+          </div>
+          <div class="mini-note"><span>💌</span><div>امشي في الصفحة واحدة واحدة، عشان في الآخر هتلاقي كلام عمري ما عرف أقوله بشكل مباشر.</div></div>
+        </div>
+
+        <div class="main-card">
+          <span class="stamp">بدأت الاحتفال بدري عشان أكون أول واحد</span>
+          <h3>يوم فراولة</h3>
+          <p>
+            من أول يوم عرفتك فيه وأنا شايف إنك مختلفة،
+            وإن عيد ميلادك يستاهل حاجة تفضل موجودة وتفتكريها.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>أروچه</strong><span>الاسم اللي بحبه عليكي أكتر</span></div>
+            <div class="stat"><strong>فراولة 🍓</strong><span>الدلع اللي شايفه شبهك</span></div>
+            <div class="stat"><strong>30/8/2026</strong><span>اليوم اللي مستنيه من بدري</span></div>
+            <div class="stat"><strong>5/3/2026</strong><span>اليوم اللي بدأت منه حكايتنا</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">الحكاية</span>
+          <h3>من أول يوم عرفتك لحد النهارده</h3>
+          <p>
+            مش كل اللي بينا كان هادي، ومش كل مرة عرفنا نفهم بعض صح،
+            بس برغم كل الخناقات والزعل فضلتي حد مهم عندي.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="num">01</div>
+            <h4>أول معرفة</h4>
+            <p>يوم 5/3/2026 كان بداية معرفة ماكنتش متوقع إنها تفرق معايا بالشكل ده.</p>
+          </article>
+          <article class="info-card">
+            <div class="num">02</div>
+            <h4>الخناقات</h4>
+            <p>اتخانقنا وزعلنا، وساعات كل واحد فينا فهم التاني غلط، بس الزعل نفسه كان بيثبت إن الموضوع فارق.</p>
+          </article>
+          <article class="info-card">
+            <div class="num">03</div>
+            <h4>عيد ميلادك</h4>
+            <p>قلت مش هكتفي بكلمتين وخلاص، وحبيت أسيبلك حاجة تفتحيها وتعرفي منها إنك مش عادية عندي.</p>
+          </article>
+        </div>
+
+        <div class="section-head" style="margin-top:40px">
+          <span class="label">شوية محطات</span>
+          <h3>تفاصيل صغيرة بس أنا فاكرها</h3>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <small>5 / 3 / 2026</small>
+            <h4>اليوم اللي عرفتك فيه</h4>
+            <p>من اليوم ده بدأت أعرف أروچه، ومع الوقت بقيت أحب طريقتها ودلع فراولة وكل التفاصيل اللي تخصها.</p>
+          </article>
+          <article class="timeline-item">
+            <small>بعدها بفترة</small>
+            <h4>الخناقات دخلت الحكاية</h4>
+            <p>حصل سوء تفاهم كتير، وساعات كنت بتصرف غلط أو أقول كلام مش هو اللي جوايا فعلًا.</p>
+          </article>
+          <article class="timeline-item">
+            <small>كل مرة كنا بنبعد</small>
+            <h4>كنت بحس إن في حاجة ناقصة</h4>
+            <p>مهما حاولت أتعامل عادي، كنت بلاحظ إن غيابك فارق وإن يومي مش زي ما هو.</p>
+          </article>
+          <article class="timeline-item">
+            <small>30 / 8 / 2026</small>
+            <h4>اليوم اللي حبيت أسبقه</h4>
+            <p>حبيت أقولك كل سنة وانتي طيبة قبل أي حد، وأقولك إن وجودك عندي له قيمة كبيرة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="countdownSection">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">العد التنازلي</span>
+          <h3>فاضل كام على يومك؟</h3>
+          <p>لحد يوم 30/8/2026، اليوم اللي حبيت أبدأ الاحتفال بيه من بدري.</p>
+        </div>
+        <div class="countdown">
+          <div class="count-card"><strong id="days">00</strong><span>يوم</span></div>
+          <div class="count-card"><strong id="hours">00</strong><span>ساعة</span></div>
+          <div class="count-card"><strong id="minutes">00</strong><span>دقيقة</span></div>
+          <div class="count-card"><strong id="seconds">00</strong><span>ثانية</span></div>
+        </div>
+        <div class="birthday-msg" id="birthdayMsg">من دلوقتي: كل سنة وانتي طيبة يا أروچه، ويا رب السنة الجديدة تكون أحلى عليكي.</div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">رسالتي ليكي</span>
+          <h3>الكلام اللي كان لازم أقوله</h3>
+          <p>اقريه براحتك، من غير ما تحسي إنك مطالبة تردي في نفس الوقت.</p>
+        </div>
+
+        <div class="letter-box">
+          <p class="quote">حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد.</p>
+          <p>
+            يا <strong>أروچه</strong> يا <strong>فراولة</strong>، كل سنة وانتي طيبة وبخير،
+            وكل سنة وضحكتك موجودة وحياتك ماشية بالطريقة اللي تريحك وتفرحك.
+          </p>
+          <p>
+            أنا عارف إن بيننا خناقات كتير، وعارف إني ساعات كنت بتصرف بطريقة تضايقك،
+            وساعات كنت بعاند أو أتكلم من غير ما أوصل اللي جوايا صح.
+          </p>
+          <p>
+            بس برغم كل ده، إنتي فضلتي حد مهم بالنسبالي.
+            حتى وقت الزعل كنت بلاحظ إن غيابك فارق، وإن الكلام معاكي كان جزء من يومي واتعودت عليه.
+          </p>
+          <p>
+            يمكن أنا مش أحسن حد بيعرف يعبر، ويمكن كتير من تصرفاتي قالت عكس اللي جوايا،
+            بس الحقيقة إن مكانك عندي أكبر من مجرد صاحبة عادية.
+          </p>
+          <p>
+            حبيت أسيبلك حاجة تفتحيها وقت ما تحبي، وتحطي فيها صورك بنفسك،
+            وتسمعي الأغنية، وتعرفي إن اليوم بتاعك كان مهم عندي قبل ما يوصل أصلًا.
+          </p>
+          <p>
+            أنا مش مستني منك رد معين، ومش عايز أحطك تحت أي ضغط.
+            أنا بس كنت محتاج أكون صريح معاكي مرة، حتى لو الصراحة مستخبية في آخر الصفحة.
+          </p>
+          <p>
+            يا رب السنة الجديدة في عمرك تبقى أهدى وأحلى، وتحققي فيها حاجات كتير نفسك فيها،
+            وتفضلي دايمًا مبسوطة ومرتاحه، ومحدش يقدر يطفي ضحكتك.
+          </p>
+          <p>
+            ولو اتخانقنا تاني، افتكري بس إن في يوم قعدت أفكر في كل تفصيلة عشان أقولك جملة واحدة:
+            <strong>إنتي فارقة معايا.</strong>
+          </p>
+          <p class="sign">كل سنة وانتي طيبة يا فراولة 🤍</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">صورك</span>
+          <h3>اختاري الصور اللي بتحبيها</h3>
+          <p>سيبت المكان ده فاضي عشان إنتي اللي تختاري الصور اللي تحبي تشوفيها هنا.</p>
+        </div>
+
+        <div class="gallery-shell">
+          <div class="upload-top">
+            <div>
+              <strong class="upload-title">حطي صورك يا أروچه</strong>
+              <div class="upload-note">
+                دوسي على إضافة صور واختاري لحد 8 صور. الصور هتفضل محفوظة على نفس الجهاز ومش بتترفع لأي مكان.
+              </div>
+            </div>
+            <div class="upload-actions">
+              <label class="upload-label" for="imageUpload">إضافة صور</label>
+              <input id="imageUpload" type="file" accept="image/*" multiple class="hidden">
+              <button class="ghost-btn" id="clearGallery">مسح الصور</button>
+            </div>
+          </div>
+
+          <div class="gallery-grid" id="galleryGrid">
+            <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>صورة بتحبيها</strong><span>اختاريها بنفسك</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">🎂</div><strong>ذكرى حلوة</strong><span>صورة ليها معنى عندك</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">🤍</div><strong>صورة مفضلة</strong><span>أي صورة على ذوقك</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>أروچه</strong><span>المكان مستني صورتك</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">الأغنية</span>
+          <h3>رامي صبري - كل سنة</h3>
+          <p>اخترت الأغنية دي عشان تبقى مرتبطة بيومك وبالرسالة دي.</p>
+        </div>
+
+        <div class="player" id="player">
+          <div class="disc-wrap"><div class="disc"></div></div>
+          <div>
+            <span class="player-badge">رامي صبري - كل سنة</span>
+            <h4>كل سنة وانتي طيبة يا أروچه</h4>
+            <p>دوسي تشغيل واسمعيها وإنتي بتكملي باقي الصفحة.</p>
+            <div class="controls">
+              <button class="play-btn" id="playMain" aria-label="تشغيل أو إيقاف">▶</button>
+              <div class="timeline-audio">
+                <input type="range" id="seekBar" class="seek" min="0" max="100" value="0">
+                <div class="time"><span id="currentTime">00:00</span><span id="durationTime">00:00</span></div>
+              </div>
+            </div>
+            <div class="audio-msg" id="audioMsg">الأغنية جاهزة.</div>
+          </div>
+        </div>
+        <audio id="audio" src="kol-sana.mp3" preload="metadata"></audio>
+      </div>
+    </section>
+
+    <section id="secret">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">الرسالة السرية</span>
+          <h3>هتحتاجي تفتحي الأربع فراولات</h3>
+          <p>كل فراولة مخبية كلمة. لما تفتحيهم كلهم هتعرفي الجملة اللي كنت مخبيها.</p>
+        </div>
+
+        <div class="secret-box">
+          <div class="secret-intro">دوسي على كل فراولة بالترتيب أو بأي ترتيب تحبيه.</div>
+          <div class="secret-grid">
+            <button class="secret-btn" data-secret-word="أنا">🍓<small>افتحي الأولى</small></button>
+            <button class="secret-btn" data-secret-word="بجد">🍓<small>افتحي التانية</small></button>
+            <button class="secret-btn" data-secret-word="بحبك">🍓<small>افتحي التالتة</small></button>
+            <button class="secret-btn" data-secret-word="يا أروچه">🍓<small>افتحي الرابعة</small></button>
+          </div>
+          <div class="hunt-status" id="huntStatus">اتفتح 0 من 4</div>
+          <div class="secret-reveal" id="secretReveal">
+            <strong>أنا بجد بحبك يا أروچه.</strong>
+            <p>
+              دي الحقيقة اللي كنت مخبيها. معرفتش أقولها بشكل مباشر،
+              فحبيت تكتشفيها بنفسك. ومهما كان ردك، أنا مقدّر إحساسك ومش هضغط عليكي.
+            </p>
+            <button class="secret-copy" id="copySecret">نسخ الرسالة</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="ending-box">
+          <span class="label" style="background:rgba(255,255,255,.09);color:#ffd0dc">آخر الكلام</span>
+          <h3>كل سنة وانتي طيبة يا أروچه</h3>
+          <p>
+            أتمنى الرسالة تكون وصلت زي ما كنت عايز أوصلها،
+            وتعرفي إنك فعلًا حد مهم عندي. خدي وقتك في أي رد، والمهم عندي إن يومك يبقى حلو.
+          </p>
+          <div class="response-row">
+            <button class="response-btn primary" data-response="happy">شوفت كل حاجة</button>
+            <button class="response-btn secondary" data-response="time">هفكر بهدوء</button>
+          </div>
+          <div class="response-msg" id="responseMsg"></div>
+          <a class="whatsapp-reply" target="_blank" rel="noopener"
+             href="https://api.whatsapp.com/send?text=%D8%B4%D9%88%D9%81%D8%AA%20%D9%83%D9%84%20%D8%AD%D8%A7%D8%AC%D8%A9%20%D9%8A%D8%A7%20%D9%85%D8%AD%D9%85%D9%88%D8%AF%20%D9%88%D9%87%D8%B1%D8%AF%20%D8%B9%D9%84%D9%8A%D9%83%20%D8%A8%D9%87%D8%AF%D9%88%D8%A1%20%F0%9F%8D%93">
+            ردي عليا على واتساب
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="float-music" id="floatMusic" aria-label="تشغيل الأغنية">♫</button>
+
+  <footer>كل سنة وانتي طيبة يا <strong>أروچه - فراولة</strong> 🍓 | 30/8/2026</footer>
+
+  <script>
+    const passwordGate = document.getElementById('passwordGate');
+    const passwordForm = document.getElementById('passwordForm');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+    const intro = document.getElementById('intro');
+    const startExperience = document.getElementById('startExperience');
+    const audio = document.getElementById('audio');
+    const playMain = document.getElementById('playMain');
+    const navPlay = document.getElementById('navPlay');
+    const floatMusic = document.getElementById('floatMusic');
+    const seekBar = document.getElementById('seekBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationTimeEl = document.getElementById('durationTime');
+    const audioMsg = document.getElementById('audioMsg');
+    const imageUpload = document.getElementById('imageUpload');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const clearGallery = document.getElementById('clearGallery');
+    const secretButtons = Array.from(document.querySelectorAll('.secret-btn'));
+    const huntStatus = document.getElementById('huntStatus');
+    const secretReveal = document.getElementById('secretReveal');
+    const copySecret = document.getElementById('copySecret');
+    const responseMsg = document.getElementById('responseMsg');
+
+    function normalizeDigits(value){
+      return value.trim()
+        .replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+        .replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+        .replace(/\\/g,'/');
+    }
+
+    passwordForm.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      if(normalizeDigits(passwordInput.value)==='30/8'){
+        sessionStorage.setItem('aroujaUnlocked','1');
+        passwordGate.classList.add('unlocked');
+        passwordError.textContent='';
+      }else{
+        passwordError.textContent='الباسورد مش صح. جربي يوم وشهر عيد ميلادك.';
+        passwordInput.select();
+      }
+    });
+
+    if(sessionStorage.getItem('aroujaUnlocked')==='1'){
+      passwordGate.classList.add('unlocked');
+    }else{
+      setTimeout(()=>passwordInput.focus(),200);
+    }
+
+    function formatTime(seconds){
+      if(!isFinite(seconds)) return '00:00';
+      const minutes=Math.floor(seconds/60);
+      const secs=Math.floor(seconds%60);
+      return String(minutes).padStart(2,'0')+':'+String(secs).padStart(2,'0');
+    }
+
+    function updatePlayUI(){
+      const playing=!audio.paused;
+      const icon=playing?'❚❚':'▶';
+      playMain.textContent=icon;
+      navPlay.textContent=icon;
+      floatMusic.textContent=playing?'❚❚':'♫';
+    }
+
+    async function toggleAudio(){
+      try{
+        if(audio.paused){
+          await audio.play();
+          audioMsg.textContent='الأغنية شغالة.';
+        }else{
+          audio.pause();
+          audioMsg.textContent='الأغنية متوقفة.';
+        }
+      }catch{
+        audioMsg.textContent='اضغطي تشغيل مرة تانية.';
+      }
+      updatePlayUI();
+    }
+
+    startExperience.addEventListener('click',async()=>{
+      intro.classList.add('hide');
+      document.body.classList.remove('locked');
+      try{
+        await audio.play();
+        audioMsg.textContent='الأغنية شغالة.';
+      }catch{
+        audioMsg.textContent='دوسي تشغيل لو الأغنية ما بدأتش.';
+      }
+      updatePlayUI();
+    });
+
+    [playMain,navPlay,floatMusic].forEach(button=>button.addEventListener('click',toggleAudio));
+
+    audio.addEventListener('loadedmetadata',()=>{
+      durationTimeEl.textContent=formatTime(audio.duration);
+    });
+    audio.addEventListener('timeupdate',()=>{
+      if(!isFinite(audio.duration)) return;
+      const value=(audio.currentTime/audio.duration)*100;
+      seekBar.value=value;
+      seekBar.style.setProperty('--seek',value+'%');
+      currentTimeEl.textContent=formatTime(audio.currentTime);
+      durationTimeEl.textContent=formatTime(audio.duration);
+    });
+    seekBar.addEventListener('input',()=>{
+      seekBar.style.setProperty('--seek',seekBar.value+'%');
+      if(isFinite(audio.duration)) audio.currentTime=(seekBar.value/100)*audio.duration;
+    });
+    audio.addEventListener('play',updatePlayUI);
+    audio.addEventListener('pause',updatePlayUI);
+    audio.addEventListener('ended',updatePlayUI);
+    audio.addEventListener('error',()=>{
+      audioMsg.textContent='ملف الأغنية مش موجود جنب index.html.';
+    });
+
+    const storageKey='aroujaBirthdayGallery';
+    const emptyGallery=`
+      <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>صورة بتحبيها</strong><span>اختاريها بنفسك</span></div></div>
+      <div class="placeholder"><div><div class="ph-icon">🎂</div><strong>ذكرى حلوة</strong><span>صورة ليها معنى عندك</span></div></div>
+      <div class="placeholder"><div><div class="ph-icon">🤍</div><strong>صورة مفضلة</strong><span>أي صورة على ذوقك</span></div></div>
+      <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>أروچه</strong><span>المكان مستني صورتك</span></div></div>`;
+
+    function renderGallery(images){
+      galleryGrid.innerHTML='';
+      if(!images.length){
+        galleryGrid.innerHTML=emptyGallery;
+        return;
+      }
+      images.forEach((src,index)=>{
+        const card=document.createElement('div');
+        card.className='photo-card';
+        card.innerHTML=`<img src="${src}" alt="صورة مختارة"><span class="tag">صورة ${index+1}</span><button class="remove" data-remove="${index}" aria-label="حذف الصورة">×</button>`;
+        galleryGrid.appendChild(card);
+      });
+      document.querySelectorAll('[data-remove]').forEach(button=>{
+        button.addEventListener('click',()=>{
+          const current=JSON.parse(localStorage.getItem(storageKey)||'[]');
+          current.splice(Number(button.dataset.remove),1);
+          localStorage.setItem(storageKey,JSON.stringify(current));
+          renderGallery(current);
+        });
+      });
+    }
+
+    function loadSavedGallery(){
+      try{renderGallery(JSON.parse(localStorage.getItem(storageKey)||'[]'));}
+      catch{renderGallery([]);}
+    }
+
+    async function compressImage(file){
+      const source=await new Promise((resolve,reject)=>{
+        const reader=new FileReader();
+        reader.onload=()=>resolve(reader.result);
+        reader.onerror=reject;
+        reader.readAsDataURL(file);
+      });
+      const image=await new Promise((resolve,reject)=>{
+        const img=new Image();
+        img.onload=()=>resolve(img);
+        img.onerror=reject;
+        img.src=source;
+      });
+      const maxSide=1100;
+      const scale=Math.min(1,maxSide/Math.max(image.width,image.height));
+      const width=Math.max(1,Math.round(image.width*scale));
+      const height=Math.max(1,Math.round(image.height*scale));
+      const canvas=document.createElement('canvas');
+      canvas.width=width;
+      canvas.height=height;
+      const context=canvas.getContext('2d');
+      context.drawImage(image,0,0,width,height);
+      return canvas.toDataURL('image/jpeg',.72);
+    }
+
+    imageUpload.addEventListener('change',async(event)=>{
+      const files=Array.from(event.target.files||[]).slice(0,8);
+      if(!files.length) return;
+      const existing=JSON.parse(localStorage.getItem(storageKey)||'[]');
+      const results=[];
+      for(const file of files){
+        if(!file.type.startsWith('image/')) continue;
+        try{results.push(await compressImage(file));}catch{}
+      }
+      const next=existing.concat(results).slice(0,8);
+      try{
+        localStorage.setItem(storageKey,JSON.stringify(next));
+        renderGallery(next);
+      }catch{
+        alert('مساحة الصور على المتصفح ممتلئة. امسحي صورة أو اتنين وجربي تاني.');
+      }
+      imageUpload.value='';
+    });
+
+    clearGallery.addEventListener('click',()=>{
+      localStorage.removeItem(storageKey);
+      renderGallery([]);
+    });
+    loadSavedGallery();
+
+    const birthday=new Date('2026-08-30T00:00:00');
+    const daysEl=document.getElementById('days');
+    const hoursEl=document.getElementById('hours');
+    const minutesEl=document.getElementById('minutes');
+    const secondsEl=document.getElementById('seconds');
+    const birthdayMsg=document.getElementById('birthdayMsg');
+
+    function updateCountdown(){
+      const diff=birthday-new Date();
+      if(diff<=0){
+        daysEl.textContent='00';
+        hoursEl.textContent='00';
+        minutesEl.textContent='00';
+        secondsEl.textContent='00';
+        birthdayMsg.textContent='النهارده يومك يا أروچه. كل سنة وانتي طيبة وبخير دايمًا.';
+        return;
+      }
+      daysEl.textContent=String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+      hoursEl.textContent=String(Math.floor((diff/(1000*60*60))%24)).padStart(2,'0');
+      minutesEl.textContent=String(Math.floor((diff/(1000*60))%60)).padStart(2,'0');
+      secondsEl.textContent=String(Math.floor((diff/1000)%60)).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown,1000);
+
+    secretButtons.forEach((button,index)=>{
+      if(sessionStorage.getItem('secretWord'+index)==='1'){
+        button.classList.add('found');
+        button.innerHTML=`${button.dataset.secretWord}<small>اتفتحت</small>`;
+      }
+      button.addEventListener('click',()=>{
+        if(button.classList.contains('found')) return;
+        button.classList.add('found');
+        button.innerHTML=`${button.dataset.secretWord}<small>اتفتحت</small>`;
+        sessionStorage.setItem('secretWord'+index,'1');
+        refreshSecret();
+      });
+    });
+
+    function refreshSecret(){
+      const found=secretButtons.filter(button=>button.classList.contains('found')).length;
+      huntStatus.textContent=`اتفتح ${found} من 4`;
+      if(found===4) secretReveal.classList.add('show');
+    }
+    refreshSecret();
+
+    copySecret.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText('أنا بجد بحبك يا أروچه.');
+        copySecret.textContent='اتنسخت';
+      }catch{
+        copySecret.textContent='أنا بجد بحبك يا أروچه.';
+      }
+    });
+
+    document.querySelectorAll('[data-response]').forEach(button=>{
+      button.addEventListener('click',()=>{
+        responseMsg.textContent=button.dataset.response==='happy'
+          ? 'كفاية عندي إنك شوفتِ كل الكلام. كل سنة وانتي طيبة يا فراولة.'
+          : 'خدي وقتك براحتك، أنا مقدر ده ومش مستني رد سريع.';
+        responseMsg.classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>
