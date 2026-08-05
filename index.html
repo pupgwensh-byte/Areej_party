@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#7b1738">
+  <meta name="description" content="موقع عيد ميلاد رومانسي وخرافي لـ أريچ - أروچه - فراولة 🍓">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="كل سنة وانتي طيبة يا أروچه 🍓">
+  <meta property="og:description" content="حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد.">
+  <meta property="og:image" content="assets/preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>أروچه | كل سنة وانتي طيبة 🍓</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Marhey:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff8fb;
+      --paper:#fffdfd;
+      --text:#321320;
+      --muted:#7e5a68;
+      --berry-1:#ffd8e4;
+      --berry-2:#ff92af;
+      --berry-3:#f34f7b;
+      --berry-4:#b31e50;
+      --berry-5:#7b1738;
+      --gold:#ffd57b;
+      --line:rgba(123,23,56,.12);
+      --shadow:0 20px 60px rgba(123,23,56,.14);
+      --shadow-soft:0 12px 35px rgba(123,23,56,.09);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Cairo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,146,175,.24), transparent 30rem),
+        radial-gradient(circle at 90% 20%, rgba(243,79,123,.12), transparent 25rem),
+        linear-gradient(180deg, #fff8fb 0%, #fff3f7 45%, #fffafb 100%);
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+    img{max-width:100%;display:block}
+    button,a{font:inherit}
+    button{border:0;cursor:pointer}
+    a{text-decoration:none;color:inherit}
+    ::selection{background:var(--berry-2);color:#fff}
+    .container{width:min(1140px,92%);margin-inline:auto}
+    .hidden{display:none!important}
+
+    .bg-blur,.bg-blur2{
+      position:fixed;pointer-events:none;z-index:-1;border-radius:50%;filter:blur(80px);opacity:.35;
+    }
+    .bg-blur{width:320px;height:320px;background:#ffb6c9;top:12%;left:-90px;animation:floaty 10s ease-in-out infinite alternate}
+    .bg-blur2{width:420px;height:420px;background:#ffc8a0;right:-140px;bottom:8%;animation:floaty 12s ease-in-out infinite alternate-reverse}
+    @keyframes floaty{to{transform:translateY(25px) translateX(20px) scale(1.08)}}
+
+    .progress{position:fixed;top:0;right:0;left:0;height:4px;z-index:60;background:rgba(255,255,255,.45);backdrop-filter:blur(6px)}
+    .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--berry-3),var(--berry-5));box-shadow:0 0 18px rgba(243,79,123,.5)}
+
+    .intro{
+      position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:22px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.14), transparent 28rem),
+        linear-gradient(135deg,var(--berry-5),#541229 60%, #8f1942 100%);
+      color:#fff;
+      transition:opacity .8s ease, visibility .8s ease;
+    }
+    .intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .intro-card{
+      width:min(660px,100%);padding:38px 28px;border-radius:36px;text-align:center;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 30px 80px rgba(0,0,0,.24);backdrop-filter:blur(18px);position:relative;overflow:hidden;
+    }
+    .intro-card::before,.intro-card::after{content:"🍓";position:absolute;font-size:34px;opacity:.15}
+    .intro-card::before{top:18px;right:18px}.intro-card::after{bottom:18px;left:18px}
+    .intro-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:800;font-size:14px}
+    .intro-emoji{font-size:74px;margin:16px 0 4px;animation:bounceBerry 2.3s ease-in-out infinite}
+    @keyframes bounceBerry{50%{transform:translateY(-7px) rotate(-6deg) scale(1.03)}}
+    .intro h1{font-family:"Marhey",cursive;font-size:clamp(34px,7.5vw,64px);margin:8px 0 12px;line-height:1.35}
+    .intro p{max-width:520px;margin:0 auto;color:rgba(255,255,255,.84);line-height:2;font-size:clamp(16px,2.3vw,20px)}
+    .start-btn{margin-top:24px;padding:16px 24px;min-width:230px;border-radius:18px;background:#fff;color:var(--berry-5);font-weight:900;box-shadow:0 15px 35px rgba(0,0,0,.24);transition:.25s}
+    .start-btn:hover{transform:translateY(-4px)}
+    .intro-note{display:block;margin-top:12px;color:rgba(255,255,255,.6);font-size:12px}
+
+    .nav{position:fixed;top:14px;right:0;left:0;z-index:55}
+    .nav-wrap{
+      width:min(1100px,92%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:10px 12px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);box-shadow:var(--shadow-soft)
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--berry-5)}
+    .brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--berry-3),var(--berry-5));color:#fff;box-shadow:0 10px 24px rgba(123,23,56,.22)}
+    .nav-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .nav-links a{padding:8px 12px;border-radius:12px;color:var(--muted);font-weight:800;font-size:14px;transition:.2s}
+    .nav-links a:hover{background:#fff0f5;color:var(--berry-5)}
+    .nav-play{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--berry-5);color:#fff;box-shadow:0 10px 24px rgba(123,23,56,.22)}
+
+    .hero{padding:130px 0 70px;min-height:100svh;display:grid;place-items:center}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.76);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:var(--berry-4);font-weight:900}
+    .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--berry-3);box-shadow:0 0 0 6px rgba(243,79,123,.08)}
+    .hero h2{font-family:"Marhey",cursive;font-size:clamp(44px,8vw,90px);line-height:1.18;margin:18px 0 12px;color:var(--berry-5)}
+    .hero h2 .accent{color:var(--berry-3);position:relative;display:inline-block}
+    .hero h2 .accent::after{content:"";position:absolute;right:2%;left:2%;bottom:8px;height:12px;border-radius:999px;background:rgba(255,146,175,.22);z-index:-1}
+    .hero p{font-size:clamp(18px,2vw,22px);line-height:2;color:var(--muted);margin:0;max-width:680px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:16px;font-weight:900;transition:.25s}
+    .btn-primary{background:linear-gradient(135deg,var(--berry-3),var(--berry-5));color:#fff;box-shadow:0 16px 38px rgba(123,23,56,.24)}
+    .btn-primary:hover,.btn-soft:hover{transform:translateY(-4px)}
+    .btn-soft{background:rgba(255,255,255,.76);border:1px solid var(--line);color:var(--berry-5);box-shadow:var(--shadow-soft)}
+    .mini-note{display:flex;gap:10px;align-items:flex-start;max-width:610px;margin-top:18px;color:var(--muted);font-size:14px;line-height:1.85}
+    .mini-note .icon{flex:0 0 auto;width:32px;height:32px;border-radius:12px;display:grid;place-items:center;background:#fff0f5}
+
+    .hero-card-wrap{position:relative;min-height:520px;display:grid;place-items:center}
+    .ring,.ring2{position:absolute;border:1px dashed rgba(123,23,56,.18);border-radius:50%;animation:spin 20s linear infinite}
+    .ring{width:500px;height:500px}.ring2{width:380px;height:380px;animation-direction:reverse;animation-duration:15s}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .spark{position:absolute;font-size:22px;filter:drop-shadow(0 10px 15px rgba(123,23,56,.1));animation:softMove 4.5s ease-in-out infinite}
+    .spark.s1{top:40px;left:70px}.spark.s2{top:90px;right:65px;animation-delay:-1s}.spark.s3{bottom:70px;left:90px;animation-delay:-2s}.spark.s4{bottom:45px;right:70px;animation-delay:-3s}
+    @keyframes softMove{50%{transform:translateY(-12px) rotate(6deg)}}
+    .main-card{
+      position:relative;width:min(430px,90vw);padding:28px;border-radius:36px;background:rgba(255,255,255,.82);
+      border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow);backdrop-filter:blur(14px);overflow:hidden
+    }
+    .main-card::after{content:"";position:absolute;inset:-20% auto auto -10%;width:220px;height:220px;border-radius:50%;background:rgba(255,216,228,.7);filter:blur(20px)}
+    .stamp{display:inline-flex;padding:7px 12px;border-radius:999px;background:#fff0f5;color:var(--berry-4);font-size:13px;font-weight:900;position:relative;z-index:1}
+    .main-card h3{position:relative;z-index:1;font-family:"Marhey",cursive;font-size:44px;line-height:1.35;margin:16px 0 8px;color:var(--berry-5)}
+    .main-card p{position:relative;z-index:1;margin:0;color:var(--muted);line-height:2;font-size:16px}
+    .stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+    .stat{padding:14px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .stat strong{display:block;color:var(--berry-5);font-size:20px}
+    .stat span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+
+    section{padding:24px 0 96px}
+    .section-head{margin-bottom:28px}
+    .section-head .label{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;background:#fff0f5;color:var(--berry-4);font-weight:900;font-size:13px}
+    .section-head h3{font-family:"Marhey",cursive;font-size:clamp(34px,6vw,58px);margin:14px 0 8px;color:var(--berry-5);line-height:1.35}
+    .section-head p{max-width:760px;margin:0;color:var(--muted);line-height:1.95;font-size:17px}
+
+    .info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .info-card{padding:24px;border-radius:24px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow-soft);backdrop-filter:blur(12px)}
+    .info-card .num{font-size:26px;font-weight:900;color:var(--berry-5)}
+    .info-card h4{margin:12px 0 8px;font-size:20px;color:var(--berry-4)}
+    .info-card p{margin:0;color:var(--muted);line-height:1.9}
+
+    .timeline{position:relative;display:grid;gap:18px;margin-top:6px}
+    .timeline::before{content:"";position:absolute;right:18px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--berry-2),rgba(123,23,56,.12))}
+    .timeline-item{position:relative;margin-right:56px;padding:22px 24px;border-radius:24px;background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);box-shadow:var(--shadow-soft);backdrop-filter:blur(12px)}
+    .timeline-item::before{content:"";position:absolute;right:-47px;top:27px;width:16px;height:16px;border-radius:50%;background:var(--berry-3);border:5px solid #fff0f5;box-shadow:0 0 0 6px rgba(243,79,123,.08)}
+    .timeline-item small{color:var(--berry-3);font-weight:900}
+    .timeline-item h4{margin:6px 0 8px;color:var(--berry-5);font-size:22px}
+    .timeline-item p{margin:0;color:var(--muted);line-height:1.95}
+
+    .letter-box{padding:clamp(26px,5vw,52px);border-radius:34px;background:linear-gradient(180deg,#fffefe,#fff7fa);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .letter-box::before{content:"🍓";position:absolute;left:-8px;bottom:-34px;font-size:130px;opacity:.05;transform:rotate(-18deg)}
+    .letter-box::after{content:"";position:absolute;top:0;bottom:0;right:34px;width:1px;background:rgba(123,23,56,.1)}
+    .letter-box p{position:relative;margin:0 0 17px;line-height:2.15;font-size:clamp(17px,1.8vw,20px)}
+    .letter-box .quote{font-family:"Marhey",cursive;font-size:clamp(30px,5vw,54px);text-align:center;color:var(--berry-3);margin:16px 0 24px;line-height:1.5}
+    .sign{font-family:"Marhey",cursive;font-size:28px;color:var(--berry-4)}
+
+    .player{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:center;padding:28px;border-radius:34px;background:linear-gradient(135deg,var(--berry-5),#5d112c 55%, #99204a 100%);color:#fff;box-shadow:0 30px 70px rgba(123,23,56,.28);overflow:hidden;position:relative}
+    .player::before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.06);left:-140px;top:-130px}
+    .disc-wrap{position:relative;min-height:270px;display:grid;place-items:center}
+    .disc{width:230px;height:230px;border-radius:50%;background:repeating-radial-gradient(circle at center,#1e1218 0 4px,#2a1821 5px 8px);position:relative;box-shadow:0 24px 50px rgba(0,0,0,.35);animation:rotateDisc 7s linear infinite;animation-play-state:paused}
+    .player.playing .disc{animation-play-state:running}
+    @keyframes rotateDisc{to{transform:rotate(360deg)}}
+    .disc::before{content:"";position:absolute;inset:60px;border-radius:50%;background:linear-gradient(135deg,var(--berry-2),var(--berry-4))}
+    .disc::after{content:"🍓";position:absolute;inset:0;display:grid;place-items:center;font-size:38px}
+    .arm{position:absolute;width:130px;height:12px;border-radius:999px;background:#d9d1d5;left:56%;top:52px;transform:rotate(-27deg);transform-origin:left center}
+    .arm::before{content:"";position:absolute;left:-8px;top:-8px;width:28px;height:28px;border-radius:50%;background:#63515a;border:5px solid #cfc6cb}
+    .arm::after{content:"";position:absolute;right:-9px;top:-6px;width:18px;height:24px;border-radius:6px;background:#ece4e8}
+    .player-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);font-size:13px;font-weight:900;color:#ffc4d5}
+    .player h4{font-family:"Marhey",cursive;font-size:clamp(30px,5vw,52px);margin:16px 0 6px;line-height:1.4}
+    .player p{margin:0;color:rgba(255,255,255,.8);line-height:1.9}
+    .controls{display:flex;align-items:center;gap:14px;margin-top:22px}
+    .play-btn{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--berry-5);font-size:22px;box-shadow:0 14px 30px rgba(0,0,0,.2)}
+    .timeline-audio{flex:1;min-width:0}
+    .seek{appearance:none;-webkit-appearance:none;width:100%;height:6px;border-radius:999px;background:linear-gradient(to left,#ff9fb8 var(--seek,0%),rgba(255,255,255,.18) var(--seek,0%));outline:none;cursor:pointer}
+    .seek::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff}
+    .seek::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:#fff}
+    .time{display:flex;justify-content:space-between;margin-top:7px;font-size:12px;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums}
+    .audio-msg{margin-top:12px;font-size:13px;color:#ffd1de}
+
+    .gallery-shell{padding:26px;border-radius:32px;background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+    .upload-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+    .upload-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .upload-label{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;border-radius:16px;background:linear-gradient(135deg,var(--berry-3),var(--berry-5));color:#fff;font-weight:900;box-shadow:0 14px 30px rgba(123,23,56,.2);cursor:pointer}
+    .ghost-btn{padding:14px 18px;border-radius:16px;background:#fff;color:var(--berry-5);font-weight:900;border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .upload-note{color:var(--muted);line-height:1.85;font-size:14px}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .placeholder,.photo-card{position:relative;aspect-ratio:1/1;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,#fff3f7,#ffe9f0);border:1px solid rgba(123,23,56,.1);box-shadow:var(--shadow-soft)}
+    .placeholder{display:grid;place-items:center;text-align:center;padding:18px}
+    .placeholder .ph-icon{font-size:44px;margin-bottom:10px}
+    .placeholder strong{display:block;color:var(--berry-5);font-size:18px}
+    .placeholder span{display:block;color:var(--muted);line-height:1.75;font-size:13px;margin-top:4px}
+    .photo-card img{width:100%;height:100%;object-fit:cover}
+    .photo-card .tag{position:absolute;right:10px;top:10px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.86);font-size:12px;font-weight:900;color:var(--berry-5);backdrop-filter:blur(10px)}
+    .photo-card .remove{position:absolute;left:10px;top:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(123,23,56,.82);color:#fff}
+
+    .countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .count-card{text-align:center;padding:22px;border-radius:24px;background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow-soft)}
+    .count-card strong{display:block;font-size:34px;color:var(--berry-5)}
+    .count-card span{display:block;color:var(--muted);margin-top:6px}
+    .birthday-msg{margin-top:16px;color:var(--muted);font-size:15px;line-height:1.85}
+
+    .secret-board{position:relative;padding:clamp(28px,6vw,60px);border-radius:36px;background:linear-gradient(135deg,#fff2f7,#fff9fb);border:1px solid rgba(255,255,255,.96);box-shadow:var(--shadow);overflow:hidden;min-height:360px}
+    .secret-hint{max-width:660px;color:var(--muted);line-height:2;font-size:17px}
+    .secret-chip{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:9px 14px;border-radius:999px;background:#fff0f5;color:var(--berry-4);font-weight:900}
+    .hunt-status{margin-top:14px;font-weight:900;color:var(--berry-5)}
+    .hidden-berry{position:absolute;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(123,23,56,.1);box-shadow:0 16px 30px rgba(123,23,56,.16);font-size:26px;cursor:pointer;transition:.25s}
+    .hidden-berry:hover{transform:translateY(-4px) scale(1.06)}
+    .hidden-berry.found{opacity:.45;transform:scale(.88)}
+    .hb1{top:24px;left:28px}.hb2{top:32%;right:8%}.hb3{bottom:22px;left:18%}.hb4{bottom:12%;right:34%}
+    .secret-reveal{margin-top:26px;padding:20px;border-radius:22px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft);display:none}
+    .secret-reveal.show{display:block;animation:fadeUp .45s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
+    .secret-reveal strong{display:block;color:var(--berry-5);font-size:24px;margin-bottom:8px}
+    .secret-reveal p{margin:0;color:var(--muted);line-height:1.95;font-size:17px}
+
+    .ending-box{padding:clamp(30px,6vw,72px);border-radius:40px;background:linear-gradient(135deg,var(--berry-5),#541229 56%, #8b1b42 100%);color:#fff;box-shadow:0 34px 80px rgba(123,23,56,.28);text-align:center;position:relative;overflow:hidden}
+    .ending-box::before{content:"🍓";position:absolute;left:-26px;bottom:-80px;font-size:240px;opacity:.05;transform:rotate(-20deg)}
+    .ending-box h3{font-family:"Marhey",cursive;font-size:clamp(34px,6vw,60px);line-height:1.45;margin:18px 0 10px}
+    .ending-box p{max-width:780px;margin:0 auto;color:rgba(255,255,255,.82);line-height:2;font-size:17px}
+    .response-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .response-btn{padding:14px 20px;border-radius:16px;font-weight:900;transition:.25s}
+    .response-btn.primary{background:#fff;color:var(--berry-5)}
+    .response-btn.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+    .response-btn:hover{transform:translateY(-4px)}
+    .response-msg{display:none;margin:20px auto 0;max-width:700px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);line-height:1.95;color:rgba(255,255,255,.92)}
+    .response-msg.show{display:block}
+
+    footer{text-align:center;padding:0 20px 42px;color:var(--muted);font-size:14px}
+    footer strong{color:var(--berry-4)}
+
+    .float-music{position:fixed;left:18px;bottom:18px;z-index:50;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--berry-4),var(--berry-5));color:#fff;box-shadow:0 16px 35px rgba(123,23,56,.28)}
+
+
+    /* Password gate */
+    .password-gate{
+      position:fixed;inset:0;z-index:160;display:grid;place-items:center;padding:22px;color:#fff;
+      background:
+        radial-gradient(circle at 50% 15%,rgba(255,202,218,.2),transparent 30rem),
+        linear-gradient(145deg,#3f0b1d,#6b1432 52%,#9b204a);
+      transition:opacity .75s ease,visibility .75s ease;
+    }
+    .password-gate.unlocked{opacity:0;visibility:hidden;pointer-events:none}
+    .password-card{
+      width:min(540px,100%);padding:clamp(28px,7vw,50px);border-radius:36px;text-align:center;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.09);
+      box-shadow:0 32px 90px rgba(0,0,0,.3);backdrop-filter:blur(20px);position:relative;overflow:hidden;
+    }
+    .password-card::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.13) 1px,transparent 1px);background-size:24px 24px;opacity:.35;pointer-events:none}
+    .lock-icon{position:relative;width:84px;height:84px;margin:0 auto 14px;border-radius:28px;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:40px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)}
+    .password-card h1{position:relative;font-family:"Marhey",cursive;font-size:clamp(30px,6vw,50px);line-height:1.45;margin:8px 0;color:#fff}
+    .password-card p{position:relative;margin:0 auto;color:rgba(255,255,255,.78);line-height:1.9;max-width:420px}
+    .password-form{position:relative;margin-top:22px;display:grid;gap:12px}
+    .password-input-wrap{display:flex;align-items:center;gap:10px;padding:8px 9px 8px 14px;border-radius:18px;background:#fff;box-shadow:0 16px 35px rgba(0,0,0,.2)}
+    .password-input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--berry-5);font:900 22px/1 "Cairo",sans-serif;text-align:center;letter-spacing:2px;padding:11px}
+    .unlock-btn{padding:14px 18px;border-radius:14px;background:linear-gradient(135deg,var(--berry-3),var(--berry-5));color:#fff;font-weight:900;white-space:nowrap}
+    .password-hint{position:relative;font-size:12px;color:rgba(255,255,255,.58)}
+    .password-error{position:relative;min-height:24px;color:#ffd1de;font-weight:800;font-size:14px}
+    .password-card.shake{animation:gateShake .45s ease}
+    @keyframes gateShake{20%,60%{transform:translateX(8px)}40%,80%{transform:translateX(-8px)}}
+
+    /* Extra premium hero details */
+    .birthday-ribbon{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 14px;border-radius:16px;background:linear-gradient(135deg,#fff7df,#ffe2a0);color:#765014;font-weight:900;box-shadow:0 12px 30px rgba(173,111,17,.14);transform:rotate(-1deg)}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+    .hero-tag{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.74);border:1px solid var(--line);color:var(--berry-4);font-size:13px;font-weight:900;box-shadow:var(--shadow-soft)}
+    .typing-line{min-height:36px;margin-top:14px;color:var(--berry-4);font-weight:900;font-size:17px}
+    .typing-line::after{content:"|";margin-right:3px;animation:blinkCaret .8s step-end infinite}
+    @keyframes blinkCaret{50%{opacity:0}}
+
+    /* Floating magic effects */
+    .fx-layer{position:fixed;inset:0;z-index:150;pointer-events:none;overflow:hidden}
+    .fx-piece{position:absolute;top:-40px;font-size:24px;animation:fallFx linear forwards;filter:drop-shadow(0 8px 10px rgba(123,23,56,.15))}
+    @keyframes fallFx{to{transform:translate3d(var(--x),110vh,0) rotate(var(--r));opacity:.05}}
+    .click-spark{position:fixed;z-index:80;pointer-events:none;font-size:18px;animation:clickSpark .75s ease-out forwards}
+    @keyframes clickSpark{to{transform:translate(var(--dx),var(--dy)) scale(.4) rotate(50deg);opacity:0}}
+
+    .whatsapp-reply{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:14px;padding:14px 20px;border-radius:16px;background:#25D366;color:#fff;font-weight:900;box-shadow:0 15px 34px rgba(37,211,102,.24);transition:.25s}
+    .whatsapp-reply:hover{transform:translateY(-4px)}
+    .secret-copy{margin-top:14px;padding:12px 16px;border-radius:14px;background:linear-gradient(135deg,var(--berry-3),var(--berry-5));color:#fff;font-weight:900}
+
+    @media (max-width:960px){
+      .hero-grid,.player{grid-template-columns:1fr}
+      .hero-card-wrap{min-height:auto}
+      .info-grid,.countdown{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .nav-links{display:none}
+      .timeline::before{right:12px}
+      .timeline-item{margin-right:44px}
+      .timeline-item::before{right:-37px}
+    }
+    @media (max-width:640px){
+      .hero{padding-top:110px}
+      .intro-card{padding:34px 20px}
+      .main-card{padding:22px}
+      .main-card h3{font-size:36px}
+      .stats{grid-template-columns:1fr}
+      .info-grid,.countdown,.gallery-grid{grid-template-columns:1fr}
+      .timeline-item{margin-right:34px;padding:20px}
+      .timeline-item::before{right:-30px;width:14px;height:14px}
+      .letter-box::after{display:none}
+      .upload-top{align-items:flex-start}
+      .hidden-berry{width:50px;height:50px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="password-gate" id="passwordGate" aria-modal="true" role="dialog" aria-labelledby="passwordTitle">
+    <div class="password-card" id="passwordCard">
+      <div class="lock-icon">🔐</div>
+      <h1 id="passwordTitle">المفاجأة دي لـ أروچه بس</h1>
+      <p>دخّلي الباسورد الصح عشان تفتحي عالم فراولة وتشوفي كل التفاصيل اللي معمولة مخصوص ليكي.</p>
+      <form class="password-form" id="passwordForm">
+        <div class="password-input-wrap">
+          <input class="password-input" id="passwordInput" inputmode="text" autocomplete="off" placeholder="مثال: 30/8" aria-label="الباسورد">
+          <button class="unlock-btn" type="submit">افتحي 🍓</button>
+        </div>
+        <div class="password-hint">تلميح صغير: يوم وشهر عيد ميلادك</div>
+        <div class="password-error" id="passwordError" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <div class="fx-layer" id="fxLayer"></div>
+
+  <div class="bg-blur"></div>
+  <div class="bg-blur2"></div>
+  <div class="progress"><span id="progressBar"></span></div>
+
+  <div class="intro" id="intro">
+    <div class="intro-card">
+      <span class="intro-badge">🍓 نسخة مخصوصة لـ أروچه - فراولة</span>
+      <div class="intro-emoji">🎂</div>
+      <h1>كل سنة وانتي طيبة يا أروچه</h1>
+      <p>
+        حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد يقولك كل سنة وانتي طيبة…
+        والمرة دي بشكل يليق بـ فراولتي فعلًا.
+      </p>
+      <button class="start-btn" id="startExperience">افتحي المفاجأة ✨</button>
+      <span class="intro-note">ركزي كويس… فيه رسالة سرية مستخبية جوه الموقع 👀</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-wrap">
+      <a href="#top" class="brand">
+        <span class="brand-mark">🍓</span>
+        <span>أروچه</span>
+      </a>
+      <div class="nav-links">
+        <a href="#story">الحكاية</a>
+        <a href="#letter">الكلام الحلو</a>
+        <a href="#gallery">صورك</a>
+        <a href="#music">الأغنية</a>
+        <a href="#secret">الرسالة السرية</a>
+      </div>
+      <button class="nav-play" id="navPlay" aria-label="تشغيل الأغنية">▶</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill"><i class="dot"></i> 30 / 8 / 2026 | Happy Birthday Arouja</span>
+          <h2>
+            كل سنة وانتي طيبة يا <span class="accent">أروچه</span><br>
+            يا أحلى <span class="accent">فراولة</span> 🍓
+          </h2>
+          <p>
+            يمكن إحنا اتخانقنا كتير، ويمكن حصل بينا زعل أكتر من مرة…
+            بس الحقيقة إن مكانك عندي فضل كبير، وعشان كده حبيت أحتفل بعيد ميلادك بدري
+            عشان أكون أول واحد يفرّحك ويقولك إن وجودك فرق فعلًا.
+          </p>
+          <div class="birthday-ribbon">👑 الاحتفال بدأ بدري… عشان تفضلي أول واحدة في التفاصيل الحلوة</div>
+          <div class="typing-line" id="typingLine"></div>
+          <div class="hero-tags">
+            <span class="hero-tag">🍓 فراولة مود</span>
+            <span class="hero-tag">💌 رسالة سرية</span>
+            <span class="hero-tag">🎵 أغنية مخصوصة</span>
+            <span class="hero-tag">🖼️ صور تختاريها بنفسك</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#letter">اقري رسالتي ليكي</a>
+            <a class="btn btn-soft" href="#gallery">اختاري صورك بنفسك</a>
+          </div>
+          <div class="mini-note">
+            <span class="icon">💌</span>
+            <div>
+              الموقع ده معمول مخصوص ليكي، وفيه كلام بطريقتي أنا…
+              وكمان فيه رسالة سرية صغيرة لو عرفتي تكتشفيها هتعرفي الحقيقة كلها.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-wrap">
+          <div class="ring"></div>
+          <div class="ring2"></div>
+          <div class="spark s1">✨</div>
+          <div class="spark s2">🍓</div>
+          <div class="spark s3">🤍</div>
+          <div class="spark s4">🎀</div>
+
+          <div class="main-card">
+            <span class="stamp">احتفال بدري مخصوص عشان أكون أول واحد 🎉</span>
+            <h3>مفاجأة عيد ميلادك</h3>
+            <p>
+              من يوم <strong>5 / 3 / 2026</strong> وأنا عرفت حد مميز جدًا…
+              وحد يستاهل أحسن احتفال وأجمل كلام وأرقّ تفاصيل.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <strong>أروچه</strong>
+                <span>الاسم اللي يليق عليكي جدًا</span>
+              </div>
+              <div class="stat">
+                <strong>فراولة 🍓</strong>
+                <span>أكتر دلع بحسه شبهك فعلًا</span>
+              </div>
+              <div class="stat">
+                <strong>30/8/2026</strong>
+                <span>اليوم اللي يستحق احتفال كبير</span>
+              </div>
+              <div class="stat">
+                <strong>رسالة سرية</strong>
+                <span>ركزي كويس… هتكتشفيها</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">📖 حكايتنا بطريقتي</span>
+          <h3>مش مجرد عيد ميلاد… ده احتفال بوجودك</h3>
+          <p>
+            الموقع ده معمول عشان يجمع أحلى كلام ليكي، شوية تفاصيل عننا، ومكان مخصوص لصورك إنتي تختاريه بنفسك.
+            كل حاجة هنا معمولة بذوق رومانسي، ناعم، وفخم… يليق بـ أروچه وفراولة.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="num">01</div>
+            <h4>بداية مميزة</h4>
+            <p>
+              من يوم <strong>5/3/2026</strong> وأنا حسيت إن في شخص دخل حياتي بطريقة مختلفة،
+              ومع الوقت بقى ليه مكان مش بسيط أبدًا.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="num">02</div>
+            <h4>خناقات كتير… بس</h4>
+            <p>
+              آه اتخانقنا كتير، وزعلنا كتير، بس حتى الزعل نفسه كان بيفرق معايا…
+              لأن ببساطة إنتي شخص مهم، والزعل من المهمين له طعم تاني.
+            </p>
+          </div>
+          <div class="info-card">
+            <div class="num">03</div>
+            <h4>احتفال بدري</h4>
+            <p>
+              حبيت أحتفل بعيد ميلادك بدري عشان أكون أول واحد يقولك
+              <strong>كل سنة وانتي طيبة يا فراولة</strong> من قلبي قبل أي حد.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:42px">
+          <span class="label">🗓️ محطات صغيرة</span>
+          <h3>شوية تفاصيل ما بين أول معرفة… ولحد المفاجأة</h3>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <small>5 / 3 / 2026</small>
+            <h4>أول مرة عرفتك</h4>
+            <p>
+              من اليوم ده وأنا عرفت واحدة مختلفة… في حضورها حاجة هادية ولطيفة ومميزة،
+              ومع الوقت بقيت بحب التفاصيل اللي تخصها من غير ما أحس.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <small>بعدها بفترة</small>
+            <h4>بيننا خناقات وزعل</h4>
+            <p>
+              حصلت خناقات، وساعات سوء تفاهم، لكن اللي كان واضح ليا دايمًا إن الزعل نفسه
+              بيأكد قد إيه وجودك فارق ومش عادي بالنسبة لي.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <small>كل مرة بنبعد</small>
+            <h4>كنت بحس بحاجة ناقصة</h4>
+            <p>
+              حتى لما كنا بنتخانق، كنت بحس إن اليوم ناقص حاجة…
+              كأن في صوت أو طاقة أو ضحكة مش موجودة، وده كان بيقول لي كلام كتير.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <small>30 / 8 / 2026</small>
+            <h4>عيد ميلاد يستاهل احتفال مختلف</h4>
+            <p>
+              عشان كده الموقع ده معمول قبل عيد ميلادك… مفاجأة صغيرة،
+              فيها اهتمام كبير، وكلام جاي من القلب، وتفاصيل مخصوصة ليكي إنتي.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="countdownSection">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">⏳ العد التنازلي</span>
+          <h3>فاضل كام على يوم فراولتي؟</h3>
+          <p>
+            عداد صغير لحد يوم <strong>30/8/2026</strong>… عشان حتى الوقت نفسه يبقى مستني عيد ميلاد أروچه.
+          </p>
+        </div>
+        <div class="countdown">
+          <div class="count-card"><strong id="days">00</strong><span>يوم</span></div>
+          <div class="count-card"><strong id="hours">00</strong><span>ساعة</span></div>
+          <div class="count-card"><strong id="minutes">00</strong><span>دقيقة</span></div>
+          <div class="count-card"><strong id="seconds">00</strong><span>ثانية</span></div>
+        </div>
+        <div class="birthday-msg" id="birthdayMsg">
+          حبيت أسبق اليوم نفسه، وأقولك من دلوقتي: كل سنة وانتي طيبة يا أروچه… يا فراولة… يا أحلى صدفة حلوة.
+        </div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">💌 رسالة مخصوصة</span>
+          <h3>شوية كلام بطريقتي ليكي</h3>
+          <p>
+            مش كلام محفوظ، ومش جمل تتقال وخلاص… دي رسالة معمولة مخصوص لـ أروچه، فيها إحساس وصدق وتفاصيل صغيرة من القلب.
+          </p>
+        </div>
+        <div class="letter-box">
+          <p class="quote">حبيت أحتفل بعيد ميلادك بدري… عشان أكون أول واحد 🤍</p>
+          <p>
+            يا <strong>أروچه</strong>… يا <strong>فراولة</strong>…
+            كل سنة وانتي طيبة، وكل سنة وملامحك الحلوة بخير، وضحكتك بخير، وقلبك بخير، وروحك الحلوة بخير.
+          </p>
+          <p>
+            أنا عارف إن بيننا خناقات كتير، وإن كان في زعل وسوء تفاهم، بس برغم كل ده…
+            إنتي فضلتي شخص مميز جدًا بالنسبالي، وحد ليه مكان واضح جوايا.
+          </p>
+          <p>
+            يمكن معرفتش أعبر دايمًا صح، ويمكن في حاجات كانت محتاجة تتقال بشكل أحسن…
+            لكن الحاجة اللي متأكد منها إنك شخصية مختلفة، ولما جيه عيد ميلادك قلت لازم أعمل حاجة تبقى مختلفة زيك.
+          </p>
+          <p>
+            علشان كده عملتلك الموقع ده… فيه رقة، وفيه رومانسية، وفيه لمسة فراولة كده تليق عليكي…
+            وفيه مكان كمان تختاري فيه صورك بنفسك، عشان يفضل الموقع على ذوقك إنتي.
+          </p>
+          <p>
+            وأيوه… لو ركزتي كويس في الموقع كله، هتلاقي فيه <strong>رسالة سرية</strong> مستخبية.
+            يمكن لو اكتشفتيها، تعرفي أكتر حاجة كنت مخبيها بين السطور.
+          </p>
+          <p>
+            كل اللي أقدر أقوله دلوقتي…
+            إنك تستاهلي فرحة كبيرة، وتستاهلي اهتمام، وتستاهلي حد يفتكر اليوم بتاعك بطريقة مميزة فعلًا.
+          </p>
+          <p>
+            يمكن ساعات بتصرف غلط، ويمكن عنادي أو طريقتي يخلّوا الكلام يوصل عكس اللي جوايا،
+            بس ده عمره ما كان معناه إنك قليلة عندي… بالعكس، يمكن خوفي من خسارتك هو اللي كان بيخليني أتلخبط أكتر.
+          </p>
+          <p>
+            أنا مش طالب منك رد مثالي، ولا مستني منك قرار في نفس اللحظة، ولا عامل الموقع ده عشان أضغط عليكي.
+            أنا بس حبيت أقولك بطريقتي إن وجودك جميل، وإن عيد ميلادك بالنسبة لي مش مجرد تاريخ يعدّي.
+          </p>
+          <p>
+            نفسي السنة الجديدة في عمرك تكون أهدى وأحلى، وتحققي فيها حاجات كتير بتحلمي بيها،
+            وتفضلي دايمًا محاطة بناس تفرحلك بجد، وتشوف قيمتك، وتحافظ على قلبك وضحكتك.
+          </p>
+          <p>
+            ولو الأيام خلتنا نتخانق تاني، أتمنى نفتكر إن في يوم اتعمل موقع كامل عشان كلمة صغيرة:
+            <strong>إنتي فارقة</strong>… وفارقة أكتر مما كنت بعرف أقوله.
+          </p>
+          <p class="sign">من شخص حابب يشوفك مبسوطة دايمًا… ومن قلبه بيتمنى يفضل قريب 🤍</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">🖼️ ركن الصور</span>
+          <h3>المكان ده ليكي إنتي تختاري صورك وتحطيها</h3>
+          <p>
+            بما إن مفيش صور موجودة دلوقتي… سيبتلك مكان شيك جدًا تضيفي فيه الصور اللي تحبيها بنفسك.
+            الصور بتظهر هنا فورًا، وبتتحفظ على نفس الجهاز اللي فتحتي منه الموقع.
+          </p>
+        </div>
+
+        <div class="gallery-shell">
+          <div class="upload-top">
+            <div>
+              <strong style="display:block;color:var(--berry-5);font-size:22px">اختاري صورك يا أروچه ✨</strong>
+              <div class="upload-note">
+                دوسي على زر <strong>إضافة صور</strong> واختاري الصور اللي تحبيها، وهي هتظهر في الركن ده بشكل فخم جدًا.<br>
+                <strong>ملحوظة:</strong> الصور بتتخزن محليًا على الجهاز فقط، ومش بتترفع على الإنترنت.
+              </div>
+            </div>
+            <div class="upload-actions">
+              <label class="upload-label" for="imageUpload">+ إضافة صور</label>
+              <input id="imageUpload" type="file" accept="image/*" multiple class="hidden">
+              <button class="ghost-btn" id="clearGallery">مسح الصور</button>
+            </div>
+          </div>
+
+          <div class="gallery-grid" id="galleryGrid">
+            <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>ركن فراولة</strong><span>مكان لصورة حلوة تحبيها</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">🎂</div><strong>ذكرى عيد الميلاد</strong><span>ممكن صورة مفضلة ليكي</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">✨</div><strong>تفصيلة مميزة</strong><span>صورة تبقي شبه ذوقك</span></div></div>
+            <div class="placeholder"><div><div class="ph-icon">🤍</div><strong>أروچه مود</strong><span>صورة تحسي إنها تمثلك</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">🎵 الأغنية</span>
+          <h3>أغنية مخصوصة للموقع</h3>
+          <p>
+            حطيت الأغنية هنا عشان تكمل الجو كله… رومانسية، إحساس، ولمة حلوة حوالين عيد ميلاد فراولتي.
+          </p>
+        </div>
+
+        <div class="player" id="player">
+          <div class="disc-wrap">
+            <div class="disc"></div>
+            <div class="arm"></div>
+          </div>
+          <div>
+            <span class="player-badge">🍓 الآن يتم التشغيل: رامي صبري - كل سنة</span>
+            <h4>كل سنة وانتي طيبة يا أروچه</h4>
+            <p>
+              لو الأغنية مشتغلتش تلقائي، اضغطي زر التشغيل، أو دوسي من فوق على زر ▶.
+              أنا ظابطها هنا بشكل مباشر عشان تشتغل من غير مشاكل على GitHub Pages.
+            </p>
+            <div class="controls">
+              <button class="play-btn" id="playMain" aria-label="تشغيل أو إيقاف">▶</button>
+              <div class="timeline-audio">
+                <input type="range" id="seekBar" class="seek" min="0" max="100" value="0">
+                <div class="time"><span id="currentTime">00:00</span><span id="durationTime">00:00</span></div>
+              </div>
+            </div>
+            <div class="audio-msg" id="audioMsg">الأغنية جاهزة… اضغطي تشغيل واستمتعي بالأجواء 🎶</div>
+          </div>
+        </div>
+        <audio id="audio" src="kol-sana.mp3" preload="metadata"></audio>
+      </div>
+    </section>
+
+    <section id="secret">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">🔐 الرسالة السرية</span>
+          <h3>فيه حاجة مستخبية… دوري عليها</h3>
+          <p>
+            قولتلك من الأول إن فيه رسالة سرية. في القسم ده فيه <strong>4 فراولات</strong> مستخبيين.
+            دوري عليهم كلهم واضغطي عليهم… ولما تكمليهم، الرسالة الحقيقية هتظهر.
+          </p>
+        </div>
+
+        <div class="secret-board">
+          <div class="secret-hint">
+            بعض الكلام الكبير بيتقال بصوت واطي… وبعض الاعترافات بتحب تتخبى شوية لحد ما تتشاف بنفسك.
+            يمكن ده يبقى ألطف اعتراف… ويمكن تعرفي منه أكتر حاجة كانت مستخبية ورا الموقع كله.
+          </div>
+          <div class="secret-chip">🍓 اجمعي الفراولات الأربعة</div>
+          <div class="hunt-status" id="huntStatus">تم العثور على 0 من 4</div>
+
+          <button class="hidden-berry hb1" data-secret="1" aria-label="فراولة مخفية">🍓</button>
+          <button class="hidden-berry hb2" data-secret="2" aria-label="فراولة مخفية">🍓</button>
+          <button class="hidden-berry hb3" data-secret="3" aria-label="فراولة مخفية">🍓</button>
+          <button class="hidden-berry hb4" data-secret="4" aria-label="فراولة مخفية">🍓</button>
+
+          <div class="secret-reveal" id="secretReveal">
+            <strong>الرسالة السرية وصلت 🤍</strong>
+            <p>
+              الحقيقة اللي كانت مستخبية بين كل سطر وكل تفصيلة هنا…
+              <strong>إني بحبك</strong>.<br>
+              ويمكن عشان كده كان لازم عيد ميلادك يبقى مميز بالشكل ده كله.
+            </p>
+            <button class="secret-copy" id="copySecret">احتفظي بالاعتراف 🤍</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="ending-box">
+          <div class="label" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#ffc7d6;font-weight:900">🎉 نهاية المفاجأة</div>
+          <h3>في الآخر… كل سنة وانتي طيبة يا أروچه</h3>
+          <p>
+            سواء فضلتي تضحكي على التفاصيل، أو قعدتي تكتشفي الرسالة السرية، أو حطيتي صورك وخليتي المكان شبهك أكتر…
+            المهم بالنسبة لي إنك تحسي إن عيد ميلادك ليه قيمة كبيرة عندي، وإنك فعلًا تستاهلي حاجة مختلفة ولطيفة ومليانة إحساس.
+          </p>
+          <div class="response-row">
+            <button class="response-btn primary" data-response="happy">الموقع عجبني 🤍</button>
+            <button class="response-btn secondary" data-response="time">هحتاج أكتشفه بهدوء ✨</button>
+          </div>
+          <div class="response-msg" id="responseMsg"></div>
+          <a class="whatsapp-reply" id="whatsappReply" target="_blank" rel="noopener"
+             href="https://api.whatsapp.com/send?text=%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D9%88%D8%B5%D9%84%D9%86%D9%8A%20%D9%88%D8%B4%D9%81%D8%AA%20%D9%83%D9%84%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D9%8A%D8%A7%20%D9%85%D8%AD%D9%85%D9%88%D8%AF%20%F0%9F%8D%93%F0%9F%A4%8D">
+             ردي عليا على واتساب 💬
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="float-music" id="floatMusic" aria-label="تشغيل الأغنية">♫</button>
+
+  <footer>
+    معمول بكل حب لـ <strong>أروچه - فراولة</strong> 🍓 | Happy Birthday 30/8/2026
+  </footer>
+
+  <script>
+    const passwordGate = document.getElementById('passwordGate');
+    const passwordCard = document.getElementById('passwordCard');
+    const passwordForm = document.getElementById('passwordForm');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+    const fxLayer = document.getElementById('fxLayer');
+    const typingLine = document.getElementById('typingLine');
+    const copySecret = document.getElementById('copySecret');
+    const intro = document.getElementById('intro');
+    const startExperience = document.getElementById('startExperience');
+    const progressBar = document.getElementById('progressBar');
+    const audio = document.getElementById('audio');
+    const player = document.getElementById('player');
+    const playMain = document.getElementById('playMain');
+    const navPlay = document.getElementById('navPlay');
+    const floatMusic = document.getElementById('floatMusic');
+    const seekBar = document.getElementById('seekBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationTimeEl = document.getElementById('durationTime');
+    const audioMsg = document.getElementById('audioMsg');
+    const imageUpload = document.getElementById('imageUpload');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const clearGallery = document.getElementById('clearGallery');
+    const huntStatus = document.getElementById('huntStatus');
+    const secretReveal = document.getElementById('secretReveal');
+    const secretButtons = Array.from(document.querySelectorAll('.hidden-berry'));
+    const responseMsg = document.getElementById('responseMsg');
+    const responseButtons = document.querySelectorAll('[data-response]');
+
+
+    function normalizeDigits(value){
+      return value.trim()
+        .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+        .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+        .replace(/\\/g,'/');
+    }
+
+    function burstFx(amount=28){
+      const icons = ['🍓','✨','🤍','🎀','🎉'];
+      for(let i=0;i<amount;i++){
+        const piece = document.createElement('span');
+        piece.className = 'fx-piece';
+        piece.textContent = icons[Math.floor(Math.random()*icons.length)];
+        piece.style.left = Math.random()*100 + 'vw';
+        piece.style.setProperty('--x', (Math.random()*180-90)+'px');
+        piece.style.setProperty('--r', (Math.random()*720-360)+'deg');
+        piece.style.animationDuration = (3.2+Math.random()*2.8)+'s';
+        piece.style.animationDelay = (Math.random()*.45)+'s';
+        fxLayer.appendChild(piece);
+        setTimeout(()=>piece.remove(),6500);
+      }
+    }
+
+    function unlockSite(){
+      passwordGate.classList.add('unlocked');
+      passwordError.textContent = '';
+      burstFx(42);
+      setTimeout(()=>startExperience.focus(),700);
+    }
+
+    passwordForm.addEventListener('submit', (event)=>{
+      event.preventDefault();
+      const value = normalizeDigits(passwordInput.value);
+      if(value === '30/8'){
+        sessionStorage.setItem('aroujaUnlocked','1');
+        unlockSite();
+      }else{
+        passwordError.textContent = 'الباسورد مش صح… ركزي في يوم وشهر عيد ميلادك 🍓';
+        passwordCard.classList.remove('shake');
+        void passwordCard.offsetWidth;
+        passwordCard.classList.add('shake');
+        passwordInput.select();
+      }
+    });
+
+    if(sessionStorage.getItem('aroujaUnlocked') === '1'){
+      passwordGate.classList.add('unlocked');
+    }else{
+      setTimeout(()=>passwordInput.focus(),400);
+    }
+
+    const typingMessages = [
+      'من يوم 5/3/2026 وإنتي بقيتي تفصيلة مختلفة…',
+      'أروچه… الاسم اللي بحبه عليكي أكتر من أي اسم.',
+      'فراولة… لأن فيكي حلاوة وشقاوة مش شبه حد.',
+      'ركزي كويس… الاعتراف الحقيقي لسه مستخبي.'
+    ];
+    let tm=0, tc=0, deleting=false;
+    function typeLoop(){
+      const text = typingMessages[tm];
+      typingLine.textContent = deleting ? text.slice(0,--tc) : text.slice(0,++tc);
+      if(!deleting && tc === text.length){deleting=true;setTimeout(typeLoop,1400);return;}
+      if(deleting && tc === 0){deleting=false;tm=(tm+1)%typingMessages.length;}
+      setTimeout(typeLoop,deleting?35:65);
+    }
+    typeLoop();
+
+    document.addEventListener('click',(event)=>{
+      if(event.target.closest('button,a,input,label')) return;
+      const icons=['✨','🤍','🍓'];
+      for(let i=0;i<3;i++){
+        const spark=document.createElement('span');
+        spark.className='click-spark';
+        spark.textContent=icons[Math.floor(Math.random()*icons.length)];
+        spark.style.left=event.clientX+'px';spark.style.top=event.clientY+'px';
+        spark.style.setProperty('--dx',(Math.random()*70-35)+'px');
+        spark.style.setProperty('--dy',(-25-Math.random()*55)+'px');
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),850);
+      }
+    });
+
+    function formatTime(seconds){
+      if(!isFinite(seconds)) return '00:00';
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }
+
+    function updatePlayUI(){
+      const playing = !audio.paused;
+      player.classList.toggle('playing', playing);
+      playMain.textContent = playing ? '❚❚' : '▶';
+      navPlay.textContent = playing ? '❚❚' : '▶';
+      floatMusic.textContent = playing ? '❚❚' : '♫';
+    }
+
+    async function toggleAudio(){
+      try{
+        if(audio.paused){
+          await audio.play();
+          audioMsg.textContent = 'الأغنية شغالة دلوقتي… خلي الجو ياخدك 🎶';
+        }else{
+          audio.pause();
+          audioMsg.textContent = 'الأغنية اتوقفت… اضغطي تشغيل لما تحبي تكمل.';
+        }
+      }catch(error){
+        audioMsg.textContent = 'المتصفح مانع التشغيل التلقائي. اضغطي زر التشغيل مرة واحدة وهيشتغل.';
+      }
+      updatePlayUI();
+    }
+
+    function tryAutoplay(){
+      audio.play().then(()=>{
+        audioMsg.textContent = 'الأغنية بدأت مع المفاجأة 🎵';
+        updatePlayUI();
+      }).catch(()=>{
+        audioMsg.textContent = 'لو الأغنية مشتغلتش تلقائي، اضغطي زر ▶ وهيشتغل فورًا.';
+        updatePlayUI();
+      });
+    }
+
+    startExperience.addEventListener('click', ()=>{
+      intro.classList.add('hide');
+      document.body.style.overflow = '';
+      tryAutoplay();
+      burstFx(24);
+    });
+    document.body.style.overflow = 'hidden';
+
+    [playMain, navPlay, floatMusic].forEach(btn => btn.addEventListener('click', toggleAudio));
+
+    audio.addEventListener('loadedmetadata', ()=>{
+      durationTimeEl.textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener('timeupdate', ()=>{
+      if(!isFinite(audio.duration)) return;
+      const value = (audio.currentTime / audio.duration) * 100;
+      seekBar.value = value;
+      seekBar.style.setProperty('--seek', value + '%');
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+      durationTimeEl.textContent = formatTime(audio.duration);
+    });
+    seekBar.addEventListener('input', ()=>{
+      seekBar.style.setProperty('--seek', seekBar.value + '%');
+      if(isFinite(audio.duration)){
+        audio.currentTime = (seekBar.value / 100) * audio.duration;
+      }
+    });
+    audio.addEventListener('play', updatePlayUI);
+    audio.addEventListener('pause', updatePlayUI);
+    audio.addEventListener('ended', updatePlayUI);
+    audio.addEventListener('error', ()=>{
+      audioMsg.textContent = 'في مشكلة في تحميل الأغنية. تأكدي إن ملف kol-sana.mp3 موجود جنب index.html.';
+    });
+
+    window.addEventListener('scroll', ()=>{
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = total > 0 ? (window.scrollY / total) * 100 : 0;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    const storageKey = 'aroujaBirthdayGallery';
+    function renderGallery(images){
+      galleryGrid.innerHTML = '';
+      if(!images.length){
+        galleryGrid.innerHTML = `
+          <div class="placeholder"><div><div class="ph-icon">🍓</div><strong>ركن فراولة</strong><span>مكان لصورة حلوة تحبيها</span></div></div>
+          <div class="placeholder"><div><div class="ph-icon">🎂</div><strong>ذكرى عيد الميلاد</strong><span>ممكن صورة مفضلة ليكي</span></div></div>
+          <div class="placeholder"><div><div class="ph-icon">✨</div><strong>تفصيلة مميزة</strong><span>صورة تبقي شبه ذوقك</span></div></div>
+          <div class="placeholder"><div><div class="ph-icon">🤍</div><strong>أروچه مود</strong><span>صورة تحسي إنها تمثلك</span></div></div>
+        `;
+        return;
+      }
+      images.forEach((src, index)=>{
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML = `
+          <img src="${src}" alt="صورة مختارة">
+          <span class="tag">صورة ${index+1}</span>
+          <button class="remove" data-remove="${index}" aria-label="حذف الصورة">×</button>
+        `;
+        galleryGrid.appendChild(card);
+      });
+      document.querySelectorAll('[data-remove]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const index = Number(btn.dataset.remove);
+          const current = JSON.parse(localStorage.getItem(storageKey) || '[]');
+          current.splice(index,1);
+          localStorage.setItem(storageKey, JSON.stringify(current));
+          renderGallery(current);
+        });
+      });
+    }
+
+    function loadSavedGallery(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        renderGallery(saved);
+      }catch{
+        renderGallery([]);
+      }
+    }
+
+    async function compressImage(file){
+      const source = await new Promise((resolve,reject)=>{
+        const reader = new FileReader();
+        reader.onload = ()=>resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      const image = await new Promise((resolve,reject)=>{
+        const img = new Image();
+        img.onload = ()=>resolve(img);
+        img.onerror = reject;
+        img.src = source;
+      });
+      const maxSide = 1100;
+      const scale = Math.min(1, maxSide / Math.max(image.width,image.height));
+      const width = Math.max(1,Math.round(image.width*scale));
+      const height = Math.max(1,Math.round(image.height*scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = width; canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image,0,0,width,height);
+      return canvas.toDataURL('image/jpeg',.72);
+    }
+
+    imageUpload.addEventListener('change', async (event)=>{
+      const files = Array.from(event.target.files || []).slice(0,8);
+      if(!files.length) return;
+      const existing = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      const results = [];
+      for(const file of files){
+        if(!file.type.startsWith('image/')) continue;
+        try{
+          results.push(await compressImage(file));
+        }catch{
+          /* Skip formats the browser cannot decode. */
+        }
+      }
+      const next = existing.concat(results).slice(0,8);
+      try{
+        localStorage.setItem(storageKey, JSON.stringify(next));
+        renderGallery(next);
+      }catch{
+        alert('الصور حجمها كبير على مساحة المتصفح. امسحي صورة أو اتنين وجربي تاني.');
+      }
+      imageUpload.value = '';
+    });
+
+    clearGallery.addEventListener('click', ()=>{
+      localStorage.removeItem(storageKey);
+      renderGallery([]);
+    });
+    loadSavedGallery();
+
+    const birthday = new Date('2026-08-30T00:00:00');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const birthdayMsg = document.getElementById('birthdayMsg');
+
+    function updateCountdown(){
+      const now = new Date();
+      const diff = birthday - now;
+      if(diff <= 0){
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        birthdayMsg.textContent = 'النهارده يومك يا أروچه 🎂🍓 كل سنة وانتي طيبة وسعيدة وبخير دايمًا.';
+        return;
+      }
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      daysEl.textContent = String(d).padStart(2,'0');
+      hoursEl.textContent = String(h).padStart(2,'0');
+      minutesEl.textContent = String(m).padStart(2,'0');
+      secondsEl.textContent = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    let foundSecrets = Number(sessionStorage.getItem('aroujaFoundSecrets') || 0);
+    secretButtons.forEach((btn, index)=>{
+      if(sessionStorage.getItem('berry-'+index) === '1') btn.classList.add('found');
+    });
+    function refreshSecretUI(){
+      foundSecrets = secretButtons.filter(btn => btn.classList.contains('found')).length;
+      huntStatus.textContent = `تم العثور على ${foundSecrets} من 4`;
+      if(foundSecrets === 4){
+        const firstReveal = !secretReveal.classList.contains('show');
+        secretReveal.classList.add('show');
+        if(firstReveal) burstFx(55);
+      }
+    }
+    refreshSecretUI();
+    secretButtons.forEach((btn, index)=>{
+      btn.addEventListener('click', ()=>{
+        if(btn.classList.contains('found')) return;
+        btn.classList.add('found');
+        sessionStorage.setItem('berry-'+index, '1');
+        refreshSecretUI();
+      });
+    });
+
+
+    if(copySecret){
+      copySecret.addEventListener('click', async ()=>{
+        const text = 'الحقيقة اللي كانت مستخبية: إني بحبك يا أروچه 🤍🍓';
+        try{
+          await navigator.clipboard.writeText(text);
+          copySecret.textContent = 'تم حفظ الاعتراف 🤍';
+        }catch{
+          copySecret.textContent = 'الاعتراف: إني بحبك 🤍';
+        }
+      });
+    }
+
+    responseButtons.forEach(button=>{
+      button.addEventListener('click', ()=>{
+        const type = button.dataset.response;
+        if(type === 'happy'){
+          responseMsg.textContent = 'يكفيني جدًا إن المفاجأة عجبتك… وده لوحده فرّحني أكتر 🤍';
+        }else{
+          responseMsg.textContent = 'خدي وقتك براحتك… المهم إنك تستمتعي بكل تفصيلة، والرسالة هتفضل مستنياكي هنا ✨';
+        }
+        responseMsg.classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>
